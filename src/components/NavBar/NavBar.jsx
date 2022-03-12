@@ -45,9 +45,9 @@ const NavBar = () => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             component={Link}
             to={'/'}
-            style={{ fontWeight: 'bold', color: '#2a96e9', cursor: 'pointer', textDecoration: 'none' }}
+            style={{ fontFamily: 'Roboto', fontWeight: 'bold', color: '#0053ff', cursor: 'pointer', textDecoration: 'none' }}
           >
-            HODLSELL
+            hodlsell
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -92,9 +92,9 @@ const NavBar = () => {
             component={Link}
             to={'/'}
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-            style={{ fontWeight: 'bold', color: '#2a96e9', cursor: 'pointer', textDecoration: 'none' }}
+            style={{ fontFamily: 'Roboto', fontWeight: 'bold', color: '#0053ff', cursor: 'pointer', textDecoration: 'none' }}
           >
-            HODLSELL
+            hodlsell
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

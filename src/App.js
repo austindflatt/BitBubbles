@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import CryptoContext from './components/context/crypto/CryptoContext'
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import NavBar from './components/NavBar/NavBar'
@@ -20,6 +21,7 @@ const darkTheme = createTheme({
 
 function App() {
   return (
+    <CryptoContext>
     <Router>
       <ThemeProvider theme={darkTheme}>
       <NavBar />
@@ -29,7 +31,7 @@ function App() {
       {/* <AlertMessage /> */}
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/crypto/:id' element={<CryptoPage />} />
+          <Route path='/price/:id' element={<CryptoPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/404' element={null} />
           <Route path='/*' element={null} />
@@ -38,6 +40,7 @@ function App() {
       </Box>
       </ThemeProvider>
     </Router>
+    </CryptoContext>
   );
 }
 

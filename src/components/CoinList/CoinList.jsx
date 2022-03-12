@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -85,11 +86,13 @@ const CoinList = () => {
 							const profit = row.price_change_percentage_24h > 0;
 							return (
 								<TableRow
-								onClick={() => (`/coins/${row.id}`)}
+								component={Link}
+								to={`price/${row.id}`}
 								key={row.name}
 								style={{ 
 									backgroundColor: '#272727', 
 									cursor: 'pointer', 
+									textDecoration: 'none'
 								}}
 								>
 									<TableCell component='th' scope='row'

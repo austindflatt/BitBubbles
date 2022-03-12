@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import { numberWithCommas } from '../CoinList/CoinList';
+import CoinInfo from '../CoinInfo/CoinInfo'
 import { LinearProgress } from '@mui/material';
 
 const CryptoPage = () => {
@@ -22,6 +23,7 @@ const CryptoPage = () => {
 
   useEffect(() => {
     fetchCoin()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if(!coin) return <LinearProgress style={{ backgroundColor: '#0053ff' }} />
@@ -54,6 +56,7 @@ const CryptoPage = () => {
         </Stack>
         <p>{coin?.description.en.split(". ")[0]}</p>
         {/* chart */}
+        <CoinInfo coin={coin} />
         </Grid>
       </Grid>
     </Box>

@@ -1,8 +1,13 @@
 import React from 'react'
+import CoinList from '../CoinList/CoinList'
+import Trending from '../Trending/Trending'
 
 const HomePage = () => {
   return (
-	<div>HomePage</div>
+    <>
+    <Trending />
+    <CoinList />
+    </>
   )
 }
 

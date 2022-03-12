@@ -101,6 +101,7 @@ const NavBar = () => {
               <Button
                 key={page}
                 component={Link}
+                color='primary'
                 to={page.toLowerCase()}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >

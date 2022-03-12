@@ -7,6 +7,7 @@ import {
 	TableRow, 
 	TableCell, 
 	TableBody,
+	Pagination,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
@@ -137,6 +138,14 @@ const CoinList = () => {
 			)
 		}
 	</TableContainer>
+	<Pagination
+	count={(handleSearch()?.length / 10).toFixed(0)}
+	onChange={(_, value) => {
+		setPage(value);
+		window.scroll(0, 450);
+	}}
+	style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
+	/>
 	</>
   )
 }

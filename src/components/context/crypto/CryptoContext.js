@@ -4,7 +4,8 @@ const Crypto = createContext();
 
 const CryptoContext = ({ children }) => {
   return (
-	<Crypto.Provider>
+	<Crypto.Provider
+	value={null}>
 		{children}
 	</Crypto.Provider>
   )

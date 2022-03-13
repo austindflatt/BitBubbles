@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/NavBar'
 import CryptoPage from './components/Pages/CryptoPage'
 import HomePage from './components/Pages/HomePage'
 import AboutPage from './components/Pages/AboutPage'
+import NotFoundPage from './components/Pages/NotFoundPage'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -34,8 +35,8 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/price/:id' element={<CryptoPage />} />
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/404' element={null} />
-          <Route path='/*' element={null} />
+          <Route path='/404' element={<NotFoundPage />} />
+          <Route path='/*' element={<NotFoundPage />} />
         </Routes>
       </Container>
       </Box>

@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { ShowChart } from '@mui/icons-material';
 
 export function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -46,6 +47,7 @@ const CoinList = () => {
 
   return (
 	<>
+	<h1 style={{ marginTop: '20px' }}>Crypto Currencies <ShowChart /></h1>
 	<TextField
 	fullWidth
 	id="fullWidth"
@@ -102,7 +104,7 @@ const CoinList = () => {
 										}}
 									>
 										<img
-										src={`https://assets.coincap.io/assets/icons/${row.symbol}@2x.png`}
+										src={row?.image}
 										alt={row.name}
 										height='50'
 										style={{ marginBottom: 10 }}

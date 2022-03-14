@@ -39,14 +39,14 @@ function TrendingItem() {
 		/>
 		<br />
 		<Stack spacing={1} direction="row" style={{margin: 'auto', display: 'block'}}>
-			<h3>Bitcoin</h3>
+			<h3>Crypto name</h3>
 		</Stack>
 		<Stack spacing={1} direction="row" style={{margin: 'auto', display: 'block'}}>
-			<p>$292.99</p>
+			<p>$0.00</p>
 		</Stack>
 		<br />
 		<Stack spacing={1} direction="row" style={{margin: 'auto', display: 'block'}}>
-			<h1 style={{ color: 'rgb(49, 199, 109)' }}><ArrowUpward />32.63%</h1>
+			<h1 style={{ color: 'rgb(49, 199, 109)' }}><ArrowUpward />00.00%</h1>
     	</Stack>
 	</Item>
 	</Link>

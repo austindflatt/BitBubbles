@@ -35,7 +35,6 @@ function TrendingItem() {
 
   return (
 	<>
-	
 	{trending.slice(0, 4).map((crypto) => (
 	<>
 	<Grid item xs={8} sm={4} md={3}>

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Stack from '@mui/material/Stack'
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { numberWithCommas } from '../CoinList/CoinList';
 import CoinInfo from '../CoinInfo/CoinInfo'
 import { LinearProgress } from '@mui/material';
@@ -30,36 +32,33 @@ const CryptoPage = () => {
 
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} columns={16}>
-        {/* sidebar */}
-        <Grid item xs={12} md={6} lg={6}>
-          <div style={{ margin: 'auto', display: 'block' }}>
-          <img
-          src={coin?.image.large}
-          alt={coin?.name}
-          height='200'
-          />
-          <h1 style={{ margin: '20' }}>{coin?.name}</h1>
-          <h3>Rank: {coin?.market_cap_rank}</h3>
-          <h3>Current Price: ${numberWithCommas(coin?.market_data.current_price.usd)}</h3>
-          <h3>Market Cap: ${numberWithCommas(coin?.market_data.market_cap.usd)}</h3>
-          <h3>Genesis Date: {coin?.genesis_date}</h3>
-          </div>
-        </Grid>
-        <Grid item xs={8} lg={6}>
-        <Stack spacing={1}>
-          <Stack direction="row" spacing={1}>
-          </Stack>
-          <Stack direction="row" spacing={1}>
-          </Stack>
-        </Stack>
-        <p>{coin?.description.en.split(". ")[0]}</p>
-        {/* chart */}
-        <CoinInfo coin={coin} />
-        </Grid>
-      </Grid>
-    </Box>
+    <CoinInfo coin={coin} />
+    <br />
+    <Accordion>
+      <AccordionSummary
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls="panel1a-content"
+      id="panel1a-header"
+      >
+        <Typography>More Details About {coin?.name}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>
+        {/* <img
+        src={coin?.image.large}
+        alt={coin?.name}
+        height='50'
+        /> */}
+        {coin?.description.en.split(". ")[0]}
+        <br /><br />
+        <h3>Rank: {coin?.market_cap_rank}</h3>
+        <h3>Current Price: ${numberWithCommas(coin?.market_data.current_price.usd)}</h3>
+        <h3>Market Cap: ${numberWithCommas(coin?.market_data.market_cap.usd)}</h3>
+        <h3>Genesis Date: {coin?.genesis_date}</h3>
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+
     </>
   )
 }

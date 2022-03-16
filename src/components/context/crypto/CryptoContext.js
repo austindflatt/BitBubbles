@@ -15,8 +15,6 @@ const CryptoContext = ({ children }) => {
 	setLoading(false)
   }
 
-  console.log(coins)
-
   useEffect(() => {
 	fetchCoins()
   }, [])

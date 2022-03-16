@@ -10,7 +10,6 @@ import NotFoundPage from './components/Pages/NotFoundPage'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import Footer from './components/Footer/Footer';
 
 const darkTheme = createTheme({
   palette: {
@@ -40,7 +39,6 @@ function App() {
         </Routes>
       </Container>
       </Box>
-      <Footer />
       </ThemeProvider>
     </Router>
     </CryptoContext>

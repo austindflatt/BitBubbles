@@ -8,7 +8,7 @@ function NotFound() {
     <div style={{margin: 'auto', display: 'block'}}>
       <h1>That page does not exist</h1>
       <br />
-      <Button variant="contained" component={Link} to={'/'}>Go Home</Button>
+      <Button variant="outlined" component={Link} to={'/'}>Go Home</Button>
     </div>
   )
 }

@@ -9,34 +9,20 @@ import {
 	TableBody,
 	Pagination,
 } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { ShowChart } from '@mui/icons-material';
+import { CryptoState } from '../context/crypto/CryptoContext';
 
 export function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const CoinList = () => {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
 
-  const fetchCoins = async () => {
-	setLoading(true)
-	const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-
-	setCoins(data)
-	setLoading(false)
-  }
-
-  console.log(coins)
-
-  useEffect(() => {
-	fetchCoins()
-  }, [])
+  const { coins, loading } = CryptoState();
 
   const handleSearch = () => {
 	return coins.filter((coin) => (

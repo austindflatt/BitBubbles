@@ -25,6 +25,7 @@ const CoinInfo = ({ coin }) => {
 
   return (
     <>
+    <h1 style={{ marginBottom: '20px' }}>{coin?.name}</h1>
     {!historicalData ? (
         <Box sx={{ display: 'flex' }} style={{width: '100px', margin: 'auto', display: 'block'}}>
           <CircularProgress size={250} style={{ color: '#0053ff' }} />

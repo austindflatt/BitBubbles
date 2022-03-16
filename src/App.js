@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import CryptoContext from './components/context/crypto/CryptoContext'
+import { AlertProvider } from './components/context/alert/AlertContext'
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import NavBar from './components/NavBar/NavBar'
@@ -23,6 +24,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <CryptoContext>
+    <AlertProvider />
     <Router>
       <ThemeProvider theme={darkTheme}>
       <NavBar />

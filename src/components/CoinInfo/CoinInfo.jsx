@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { CircularProgress, Box } from '@mui/material'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -21,7 +21,6 @@ const CoinInfo = ({ coin }) => {
     fetchHistoricalData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days])
-
 
   return (
     <>
@@ -64,7 +63,6 @@ const CoinInfo = ({ coin }) => {
             <Button
             variant={day.value === days && 'outlined'}
             onClick={() => setDays(day.value)}
-            
             >
               {day.label}
             </Button>
@@ -72,8 +70,8 @@ const CoinInfo = ({ coin }) => {
         </Stack>
         <br />
         <Stack spacing={2} direction="row">
-          <Button variant="outlined" color='success'>Add to watchlist</Button>
-          <Button variant="outlined" color='error'>Remove from watchlist</Button>
+          <Button variant="outlined" color='success' disabled>Add to watchlist</Button>
+          <Button variant="outlined" color='error' disabled>Remove from watchlist</Button>
         </Stack>
         </>
       )

@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import 'chartkick/chart.js'
 import { Line } from 'react-chartjs-2';
-
+import { chartInterval } from '../../config/data'
 
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
@@ -60,11 +60,9 @@ const CoinInfo = ({ coin }) => {
         />
         <br />
         <Stack spacing={2} direction="row">
-          <Button variant="outlined">24 Hours</Button>
-          <Button variant="outlined">1 Month</Button>
-          <Button variant="outlined">3 Months</Button>
-          <Button variant="outlined">1 Year</Button>
-          <Button variant="outlined">All</Button>
+          {chartInterval.map(day => (
+            <Button variant="outlined" onClick={() => setDays(day.value)}>{day.label}</Button>
+          ))}
         </Stack>
         <br />
         <Stack spacing={2} direction="row">

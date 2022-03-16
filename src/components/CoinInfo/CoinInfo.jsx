@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { CircularProgress, Box } from '@mui/material'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { LineChart, AreaChart } from 'react-chartkick'
 import 'chartkick/chart.js'
+import { Line } from 'react-chartjs-2';
 
 
 const CoinInfo = ({ coin }) => {
@@ -32,19 +32,30 @@ const CoinInfo = ({ coin }) => {
         </Box>
       ) : (
         <>
-        <AreaChart 
-          data={[
-            historicalData.map((coin => {
+        <Line 
+          data={{
+            labels: historicalData.map((coin => {
               let date = new Date(coin[0]);
               let time =
                 date.getHours() > 12
                   ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                   : `${date.getHours()}:${date.getMinutes()} AM`;
 
-                  return days === 1 ? time : date.toLocaleDateString()
+                  return days === 1 ? time : date.toLocaleDateString();
             })),
-          ]}
-          colors={["#0053ff"]}
+            datasets: [{
+              data: historicalData.map((coin) => coin[1]),
+              label: `Price Past ${days} Days in USD`,
+              borderColor: '#0053ff',
+            }]
+          }}
+          options={{
+            elements: {
+              point: {
+                radius: 1,
+              }
+            }
+          }}
           
         />
         <br />

@@ -16,7 +16,7 @@ export const chartInterval = [
 	  value: 365,
 	},
 	{
-		label: "All",
-		value: "max",
+	   label: "All",
+	   value: "max",
 	  },
   ];

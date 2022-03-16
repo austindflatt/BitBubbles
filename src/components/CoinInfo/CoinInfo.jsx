@@ -61,7 +61,13 @@ const CoinInfo = ({ coin }) => {
         <br />
         <Stack spacing={2} direction="row">
           {chartInterval.map(day => (
-            <Button variant="outlined" onClick={() => setDays(day.value)}>{day.label}</Button>
+            <Button
+            variant={day.value === days && 'outlined'}
+            onClick={() => setDays(day.value)}
+            
+            >
+              {day.label}
+            </Button>
           ))}
         </Stack>
         <br />

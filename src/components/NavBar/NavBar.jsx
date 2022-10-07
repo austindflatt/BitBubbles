@@ -113,7 +113,7 @@ const NavBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
           <Stack spacing={2} direction="row">
-          <Button variant="contained">Sign In</Button>
+          {/* <Button variant="contained">Sign In</Button> */}
           </Stack>
             {/* <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

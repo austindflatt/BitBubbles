@@ -52,7 +52,7 @@ const CoinList = () => {
 	<TableContainer>
 
 				<Table>
-					<TableHead style={{ backgroundColor: '#444', boxShadow: '0 2px 8px rgb(0 0 0 / 20%)' }}>
+					<TableHead style={{ backgroundColor: '#444', boxShadow: '0 2px 8px rgb(0 0 0 / 20%)', padding: '0.5em 0.25em' }}>
 						<TableRow>
 							{["Coin Name", "Price (USD)", "Market Cap", "Circulating Supply", "Day", "Week", "Month", "Year"].map((head) => (
 								<TableCell

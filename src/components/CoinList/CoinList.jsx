@@ -9,10 +9,10 @@ import {
 	TableBody,
 	Pagination,
 } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { ShowChart } from '@mui/icons-material';
-import { CryptoState } from '../context/crypto/CryptoContext';
+import { abbreviateNumber } from "js-abbreviation-number";
 
 export function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -20,47 +20,50 @@ export function numberWithCommas(x) {
 
 const CoinList = () => {
   const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
+  const [coins, setCoins] = useState([])
+  const [isHovering, setIsHovering] = useState(false);
 
-  const { coins, loading } = CryptoState();
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
 
-  const handleSearch = () => {
-	return coins.filter((coin) => (
-		coin.name.toLowerCase().includes(search) ||
-		coin.symbol.toLowerCase().includes(search)
-	))
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  const fetchData = () => {
+    fetch("https://api.coingecko.com/api/v3/coins")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCoins(data)
+      })
   }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  console.log(coins)
 
   return (
 	<>
-	<h1 style={{ marginTop: '20px' }}>Crypto Currencies <ShowChart /></h1>
-	<TextField
-	fullWidth
-	id="fullWidth"
-	color="warning"
-	label="Search"
-	value={null}
-	onChange={(e) => setSearch(e.target.value)}
-	style={{ marginBottom: 20, marginTop: 20 }}
-	/>
-
 	<TableContainer>
-		{
-			loading ? (
-				<LinearProgress style={{ backgroundColor: '#0053ff' }} />
-			) : (
+
 				<Table>
-					<TableHead style={{ backgroundColor: '#0053ff' }}>
+					<TableHead style={{ backgroundColor: '#444', boxShadow: '0 2px 8px rgb(0 0 0 / 20%)' }}>
 						<TableRow>
-							{["Coin Name", "Price (USD)", "24hr Change", "Market Cap"].map((head) => (
+							{["Coin Name", "Price (USD)", "Market Cap", "Circulating Supply", "Day", "Week", "Month", "Year"].map((head) => (
 								<TableCell
 									style={{ 
-										color: 'Black',
+										color: '#FFF',
 										fontWeight: '700',
-										fontFamily: 'Roboto'
+										fontFamily: 'Roboto',
+										fontSize: '20px', 
 									}}
 									key={head}
-									align={head === "Coin Name" ? "" : "right"}
+									align={head === "Coin Name" ? "" : "right" & head === "Hour" ? "" : "center"}
 								>
 									{head}
 								</TableCell>
@@ -68,75 +71,107 @@ const CoinList = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{handleSearch()
-						.slice((page - 1) * 10, (page - 1) * 10 + 10)
+						{coins
 						.map(row => {
-							const profit = row.price_change_percentage_24h > 0;
 							return (
 								<TableRow
-								component={Link}
-								to={`price/${row.id}`}
 								key={row.name}
 								style={{ 
-									backgroundColor: '#272727', 
 									cursor: 'pointer', 
-									textDecoration: 'none'
+									textDecoration: 'none',
 								}}
 								>
-									<TableCell component='th' scope='row'
+									<TableCell 
+									scope='row'
+									component={Link}
+									to={`price/${row.id}`}
 										style={{
 											display: 'flex',
 											gap: 15,
+											borderBottom: '0px solid rgba(81, 81, 81, 1)',
+											textDecoration: 'none'
 										}}
 									>
 										<img
-										src={row?.image}
+										src={row?.image.small}
 										alt={row.name}
 										height='50'
-										style={{ marginBottom: 10 }}
+										style={{ height: '2em', marginRight: '0.25em', verticalAlign: 'sub' }}
 										/>
 										<div style={{ display: 'flex', flexDirection: 'column' }}>
-											<span style={{ fontSize: '20px', textTransform: 'uppercase' }}>
+											{/* <span style={{ fontSize: '20px', textTransform: 'uppercase' }}>
 												{row.symbol}
-											</span>
-											<span style={{ color: 'darkgrey' }}>
+											</span> */}
+											<span style={{ transitionProperty: '#ccc', transitionDuration: '.4s', outline: 'none', paddingBottom: '0.1em', borderBottom: 'solid 1px', fontSize: '20px',   }}>
 												{row.name}
 											</span>
 										</div>
 									</TableCell>
 									<TableCell
 									align='right'
+									style={{
+										borderBottom: '0px solid rgba(81, 81, 81, 1)', fontSize: '20px', cursor: 'text'
+									}}
 									>
-									${numberWithCommas(row.current_price.toFixed(2))}
+									${row.market_data.current_price.usd.toFixed(2)}
 									</TableCell>
 									<TableCell
 									align='right'
-									style={{ color: profit > 0 ? 'rgb(49, 199, 109)' : 'rgb(199 49 49)', fontWeight: '500' }}
+									style={{
+										borderBottom: '0px solid rgba(81, 81, 81, 1)', fontSize: '20px', cursor: 'text',
+									}}
 									>
-										{profit && '+'}
-										{row.price_change_percentage_24h.toFixed(2)}%
+										${row.market_data.market_cap.usd}
 									</TableCell>
 									<TableCell
 									align='right'
+									style={{
+										borderBottom: '0px solid rgba(81, 81, 81, 1)', fontSize: '20px', cursor: 'text', textTransform: 'uppercase'
+									}}
 									>
-										${numberWithCommas(row.market_cap.toString())}
+										{row.market_data.circulating_supply} {row.symbol}
 									</TableCell>
+									<TableCell
+									align='center'
+									style={{ backgroundColor: `${row.market_data.price_change_percentage_24h}` > 0 ? 'rgb(34, 136, 34)' : 'rgb(187, 68, 68)', fontSize: '20px', fontWeight: '500', cursor: 'text', borderBottom: '0px solid rgba(81, 81, 81, 1)' }}
+									>
+										
+										{row.market_data.price_change_percentage_24h.toFixed(2)}%
+									</TableCell>
+									<TableCell
+									align='center'
+									style={{ backgroundColor: `${row.market_data.price_change_percentage_7d}` > 0 ? 'rgb(34, 136, 34)' : 'rgb(187, 68, 68)', fontSize: '20px', fontWeight: '500', cursor: 'text', borderBottom: '0px solid rgba(81, 81, 81, 1)' }}
+									>
+										{row.market_data.price_change_percentage_7d.toFixed(2)}%
+									</TableCell>
+									<TableCell
+									align='center'
+									style={{ backgroundColor: `${row.market_data.price_change_percentage_30d}` > 0 ? 'rgb(34, 136, 34)' : 'rgb(187, 68, 68)', fontSize: '20px', fontWeight: '500', cursor: 'text', borderBottom: '0px solid rgba(81, 81, 81, 1)' }}
+									>
+										{row.market_data.price_change_percentage_30d.toFixed(2)}%
+									</TableCell>
+									<TableCell
+									align='center'
+									style={{ backgroundColor: `${row.market_data.price_change_percentage_1y}` > 0 ? 'rgb(34, 136, 34)' : 'rgb(187, 68, 68)', fontSize: '20px', fontWeight: '500', cursor: 'text', borderBottom: '0px solid rgba(81, 81, 81, 1)' }}
+									>
+										{row.market_data.price_change_percentage_1y.toFixed(2)}%
+									</TableCell>
+									
 								</TableRow>
 							)
 						})}
 					</TableBody>
 				</Table>
-			)
-		}
+			
 	</TableContainer>
-	<Pagination
-	count={(handleSearch()?.length / 10).toFixed(0)}
+	{/* <Pagination
+	count={(handleSearch()?.length / 50).toFixed(0)}
 	onChange={(_, value) => {
 		setPage(value);
 		window.scroll(0, 450);
 	}}
 	style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
-	/>
+	/> */}
 	</>
   )
 }

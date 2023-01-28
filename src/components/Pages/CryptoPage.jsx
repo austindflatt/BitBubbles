@@ -35,13 +35,6 @@ const CryptoPage = () => {
     <CoinInfo coin={coin} />
     <br />
     <Accordion>
-      <AccordionSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-      >
-        <Typography>More Details About {coin?.name}</Typography>
-      </AccordionSummary>
       <AccordionDetails>
         <Typography>
         {/* <img

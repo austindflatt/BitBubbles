@@ -59,20 +59,38 @@ const CoinInfo = ({ coin }) => {
           }}
           options={{
             elements: {
-              point: {
-                radius: 1,
+              // point: {
+              //   radius: 1,
+              // },
+              // point: {
+              //   borderColor: "#027DC4",
+              //   backgroundColor: "#fff",
+              //   hoverBackgroundColor: "#fff",
+              //   borderWidth: 2,
+              //   radius: 5,
+              //   hoverRadius: 7,
+              //   hoverBorderWidth: 2,
+              // },
+            },
+            plugins: {
+              legend: {
+                  display: false
               },
-              point: {
-                borderColor: "#027DC4",
-                backgroundColor: "#fff",
-                hoverBackgroundColor: "#fff",
-                borderWidth: 2,
-                radius: 5,
-                hoverRadius: 7,
-                hoverBorderWidth: 2,
+          },
+            scales: {
+              x: {
+                grid: {
+                  display: false
+                }
               },
-            }
+              y: {
+                grid: {
+                  display: false
+                }
+              }
+          }
           }}
+          
           
         />
         <br />

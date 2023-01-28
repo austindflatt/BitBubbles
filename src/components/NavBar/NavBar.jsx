@@ -37,6 +37,7 @@ const NavBar = () => {
   };
 
   return (
+    <>
     <AppBar position="sticky" sx={{  backgroundColor: '#444', boxShadow: '0 2px 8px rgb(0 0 0 / 20%)' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -65,6 +66,23 @@ const NavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <div className="bubble-chart-header">
+      <div className="configuration-tabs scroll-container">
+        <button className="tab selected" draggable="true">Week</button>
+        <button className="tab" draggable="true">Market Cap + Week</button>
+      </div>
+      <button className="icon-button border" title="Edit chart">
+        <svg width="24" height="24">
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+          </svg>
+        </button>
+        <button className="icon-button border" title="Add chart">
+          <svg width="24" height="24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+          </svg>
+        </button>
+    </div>
+    </>
   );
 };
 

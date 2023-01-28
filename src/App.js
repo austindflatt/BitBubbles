@@ -36,7 +36,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
       <NavBar />
       <CssBaseline />
-      <Box m={2} pt={3}>
+      <Box>
       {/* <AlertMessage /> */}
         <Routes>
           <Route path='/' element={<HomePage />} />

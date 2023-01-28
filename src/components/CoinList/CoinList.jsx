@@ -58,9 +58,7 @@ const CoinList = () => {
 								<TableCell
 									style={{ 
 										color: '#FFF',
-										fontWeight: '700',
-										fontFamily: 'Roboto',
-										fontSize: '20px', 
+										font: '20px Verdana,Arial,sans-serif'
 									}}
 									key={head}
 									align={head === "Coin Name" ? "" : "right" & head === "Hour" ? "" : "center"}

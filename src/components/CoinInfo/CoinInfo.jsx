@@ -1,114 +1,209 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useEffect, useState, useContext } from 'react'
-import { CircularProgress, Box } from '@mui/material'
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import 'chartkick/chart.js'
-import { Line, ScriptableContext } from 'react-chartjs-2';
-import { chartInterval } from '../../config/data'
+import { CircularProgress, Box } from '@mui/material';
+import 'chartkick/chart.js';
+import { Line } from 'react-chartjs-2';
+import { chartInterval } from '../../config/data';
+import { abbreviateNumber } from '../CoinList/CoinList';
+
+
+const colors = {
+  purple: {
+    default: "rgba(149, 76, 233, 5)",
+    half: "rgba(149, 76, 233, 1)",
+    quarter: "rgba(149, 76, 233, 0.25)",
+    zero: "rgba(149, 76, 233, 0.01)",
+  },
+};
 
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
-
+  
   const fetchHistoricalData = async () => {
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=USD&days=${days}`);
+    // const { details } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}`);
     setHistoricalData(data.prices);
     console.log(data.prices)
   }
-
+  
   useEffect(() => {
     fetchHistoricalData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days])
 
-  // const ctx = canvas.getContext("2d");
-  // const gradient = ctx.createLinearGradient(0, 0, 0, height);
-  // gradient.addColorStop(0, 'rgba(250,174,50,1)');   
-  // gradient.addColorStop(1, 'rgba(250,174,50,0)');
-
   return (
     <>
-    <h1 style={{ marginBottom: '20px' }}>{coin?.name}</h1>
+    <br />
+    <div className="currency-header">
+      <img src={coin?.image.small} alt={coin.name}  />
+      <span style={{ marginBottom: '20px', font: '20px Verdana,Arial,sans-serif' }}>{coin?.name}</span>
+    </div>
+    <p style={{ marginTop: '20px', marginBottom: '20px' }}>
+      {coin?.description.en.split(". ")[0]}
+    </p>
+    <div className="bubble-window-details">
+      <p>
+        <span>Rank</span>
+        <strong className="number">{coin.market_cap_rank}</strong>
+      </p>
+      <p>
+        <span>Market Cap</span>
+        <strong className="number">${abbreviateNumber(coin.market_data.market_cap.usd)}</strong>
+      </p>
+      <p>
+        <span>Total Volume</span>
+        <strong className="number">${abbreviateNumber(coin.market_data.total_volume.usd)}</strong>
+      </p>
+    </div>
+    
     {!historicalData ? (
-        <Box sx={{ display: 'flex' }} style={{width: '100px', margin: 'auto', display: 'block'}}>
-          <CircularProgress size={250} style={{ color: '#0053ff' }} />
-        </Box>
+      <Box sx={{ display: 'flex' }} style={{width: '100px', margin: 'auto', display: 'block'}}>
+        <CircularProgress size={150} style={{ color: 'rgba(149, 76, 233, 0.5)' }} />
+      </Box>
       ) : (
         <>
-        <Line 
-          data={{
-            labels: historicalData.map((coin => {
-              let date = new Date(coin[0]);
-              let time =
-                date.getHours() > 12
-                  ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                  : `${date.getHours()}:${date.getMinutes()} AM`;
+          <Line 
+            data={{
+              labels: historicalData.map((coin => {
+                let date = new Date(coin[0]);
+                let time =
+                  date.getHours() > 12
+                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                    : `${date.getHours()}:${date.getMinutes()} AM`;
 
-                  return days === 1 ? time : date.toLocaleDateString();
-            })),
-            datasets: [{
-              data: historicalData.map((coin) => coin[1]),
-              label: `Price Past ${days} Days in USD`,
-              borderColor: '#FFF',
-              color: '#FFF',
-              backgroundColor: '#0053ff',
-              fill: true,
-              
-            }]
-          }}
-          options={{
-            elements: {
-              // point: {
-              //   radius: 1,
-              // },
-              // point: {
-              //   borderColor: "#027DC4",
-              //   backgroundColor: "#fff",
-              //   hoverBackgroundColor: "#fff",
-              //   borderWidth: 2,
-              //   radius: 5,
-              //   hoverRadius: 7,
-              //   hoverBorderWidth: 2,
-              // },
-            },
-            plugins: {
-              legend: {
-                  display: false
+                    return days === 1 ? time : date.toLocaleDateString();
+              })),
+              datasets: [{
+                data: historicalData.map((coin) => coin[1]),
+                label: `Price Past ${days} Days in USD`,
+                borderColor: colors.purple.default,
+                borderWidth: 2,
+                color: '#FFF',
+                backgroundColor: ({chart: {ctx}}) => {
+                  const gradient = ctx.createLinearGradient(0, 0, 0, 650);
+                  gradient.addColorStop(0, colors.purple.half);
+                  gradient.addColorStop(0.35, colors.purple.quarter);
+                  gradient.addColorStop(1, colors.purple.zero);
+                  return gradient;
+                },
+                fill: true,
+              }]
+            }}
+            options={{
+              hover: {
+                mode: 'index',
+                intersect: true
               },
-          },
-            scales: {
-              x: {
-                grid: {
-                  display: false
-                }
+              elements: {
+                point: {
+                  // green: rgb(51, 255, 51)
+                  // red: rgb(255, 102, 102)
+                  backgroundColor: "#fff",
+                  borderColor: "#ff6666",
+                  hoverBackgroundColor: "rgb(51, 255, 51)",
+                  hoverBorderColor: "rgb(51, 255, 51)",
+                  borderWidth: 2,
+                  radius: 3,
+                  hoverRadius: 5,
+                  hoverBorderWidth: 2,
+                },
               },
-              y: {
-                grid: {
+              responsive: true,
+              plugins: {
+                legend: {
                   display: false
+                },
+              },
+              scales: {
+                color: '#FFF',
+                x: {
+                  ticks: {
+                    color: "white",
+                    font: {
+                      size: 15, 
+                    },
+                    stepSize: 1,
+                    beginAtZero: true
+                  },
+                  grid: {
+                    display: false,
+                    drawBorder: false,
+                  },
+                },
+                y: {
+                  ticks: {
+                    color: "white",
+                    font: {
+                      size: 15, 
+                    },
+                  beginAtZero: true
+                },
+                grid: {
+                  display: false,
+                  drawBorder: false,
                 }
               }
-          }
+            }
           }}
+          />
+
+          <br />
           
-          
-        />
-        <br />
-        <Stack spacing={2} direction="row">
-          {chartInterval.map(day => (
-            <Button
-            variant={day.value === days && 'outlined'}
-            onClick={() => setDays(day.value)}
-            >
-              {day.label}
-            </Button>
-          ))}
-        </Stack>
-        {/* <br />
-        <Stack spacing={2} direction="row">
-          <Button variant="outlined" color='success' disabled>Add to watchlist</Button>
-          <Button variant="outlined" color='error' disabled>Remove from watchlist</Button>
-        </Stack> */}
+          <div className="bubble-window-performance">
+            <>
+            {chartInterval.map(day => (
+            <p className={day.value === days && 'selected'} onClick={() => setDays(day.value)}>
+              <span>{day.label}</span>
+              {day.label === 'Day' && (
+                <span 
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_24h}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_24h > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_24h.toFixed(2)}%
+                </span>
+              )}
+              {day.label === 'Week' && (
+                <span
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_7d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_7d > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_7d.toFixed(2)}%
+                </span>
+              )}
+              {day.label === '2 Weeks' && (
+                <span 
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_14d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_14d > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_14d.toFixed(2)}%
+                </span>
+              )}
+              {day.label === 'Month' && (
+                <span 
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_30d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_30d > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_30d.toFixed(2)}%
+                </span>
+              )}
+              {day.label === 'Year' && (
+                <span 
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_1y}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_1y > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_1y.toFixed(2)}%
+                </span>
+              )}
+            </p>
+            ))}
+            </>
+          </div>
         </>
       )
     }
@@ -116,4 +211,4 @@ const CoinInfo = ({ coin }) => {
   )
 }
 
-export default CoinInfo
+export default CoinInfo;

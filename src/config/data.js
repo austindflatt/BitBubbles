@@ -1,22 +1,22 @@
 export const chartInterval = [
 	{
-	  label: "24 Hours",
+	  label: "Day",
 	  value: 1,
 	},
 	{
-	  label: "1 Month",
+		label: "Week",
+		value: 7,
+	},
+  {
+	  label: "2 Weeks",
+	  value: 14,
+	},
+	{
+	  label: "Month",
 	  value: 30,
 	},
 	{
-	  label: "3 Months",
-	  value: 90,
-	},
-	{
-	  label: "1 Year",
+	  label: "Year",
 	  value: 365,
 	},
-	{
-	   label: "All",
-	   value: "max",
-	  },
   ];

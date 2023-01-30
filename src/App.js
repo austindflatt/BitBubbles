@@ -8,16 +8,17 @@ import HomePage from './components/Pages/HomePage'
 import NotFoundPage from './components/Pages/NotFoundPage'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
+import Footer from './components/Footer/Footer';
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#222222"
+      default: "#111111"
     },
     typography: {
       fontFamily: [
+        'Verdana',
         'Arial',
         'Helvetica', 
         'sans-serif'
@@ -34,6 +35,7 @@ function App() {
     <AlertProvider />
     <Router>
       <ThemeProvider theme={darkTheme}>
+      {/* <CoinDetailNavBar /> */}
       <NavBar />
       <CssBaseline />
       <Box>
@@ -45,6 +47,7 @@ function App() {
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>
       </Box>
+      <Footer />
       </ThemeProvider>
     </Router>
     </>

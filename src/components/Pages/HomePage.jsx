@@ -1,12 +1,12 @@
 import { Container } from '@mui/material'
 import React from 'react'
 import CoinList from '../CoinList/CoinList'
-import Trending from '../Trending/Trending'
+import HeatMap from '../HeatMap/HeatMap'
 
 const HomePage = () => {
   return (
     <>
-      <Trending />
+      <HeatMap />
       <Container maxWidth="xl">
         <CoinList />
       </Container>
@@ -14,4 +14,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default HomePage;

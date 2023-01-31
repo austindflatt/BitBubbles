@@ -318,6 +318,7 @@ svg{
   pointer-events:none
 }
 footer{
+  font-family: Montserrat,sans-serif;
   box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
@@ -356,6 +357,7 @@ footer .icon-button{
   margin-right:.5em
 }
 input{
+  font-family: Montserrat,sans-serif;
   transition:border-color .4s;
   -webkit-appearance:none;
   font:inherit;
@@ -434,10 +436,13 @@ input:focus{
   stroke:#ff0;
   fill:#ff0
 }
+
 .currency-table{
+  font-family: Montserrat,sans-serif;
   margin:0 auto;
   white-space:nowrap
 }
+
 .name-cell{
   display:flex;
   align-items:center
@@ -730,6 +735,7 @@ input:focus{
   display:flex
 }
 .search-input{
+  font-family: Montserrat,sans-serif;
   border-radius:12px;
   width:100%;
   padding:.25em .25em .25em 1.75em;
@@ -1581,7 +1587,7 @@ input:focus{
 }
 
 .coin-text {
-  flex: 33.33%;
+  flex: auto;
   flex-direction: row;
   flex-wrap: wrap;
   flex-direction: column;
@@ -1610,6 +1616,7 @@ input:focus{
     pointer-events: none;
     -webkit-transition: opacity 250ms;
     transition: opacity 250ms;
+    font-weight: 600;
     opacity: 1;
   }
   }

@@ -17,12 +17,8 @@ const darkTheme = createTheme({
       default: "#111111"
     },
     typography: {
-      fontFamily: [
-        'Verdana',
-        'Arial',
-        'Helvetica', 
-        'sans-serif'
-      ].join(',')},
+      fontFamily: 'Montserrat,sans-serif',
+    },
     text: {
       primary: "#ffffff"
     },

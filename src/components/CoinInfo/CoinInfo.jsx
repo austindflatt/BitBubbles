@@ -36,8 +36,8 @@ const CoinInfo = ({ coin }) => {
     <>
     <br />
     <div className="currency-header">
-      <img src={coin?.image.small} alt={coin.name}  />
-      <span style={{ marginBottom: '20px', font: '20px Verdana,Arial,sans-serif' }}>{coin?.name}</span>
+      <img src={coin?.image.large} alt={coin.name}  />
+      <span style={{ marginBottom: '20px', font: '33px Montserrat,sans-serif' }}>{coin?.name}</span>
     </div>
     <p style={{ marginTop: '20px', marginBottom: '20px' }}>
       {coin?.description.en.split(". ")[0]}
@@ -155,49 +155,49 @@ const CoinInfo = ({ coin }) => {
             {chartInterval.map(day => (
             <p className={day.value === days && 'selected'} onClick={() => setDays(day.value)}>
               <span>{day.label}</span>
+              {day.label === 'Hour' && (
+                <span 
+                style={{ 
+                  color: `${coin.market_data.price_change_percentage_1h_in_currency.usd}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                }}>
+                {coin.market_data.price_change_percentage_1h_in_currency.usd > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_1h_in_currency.usd.toFixed(2)}%
+                </span>
+              )}
               {day.label === 'Day' && (
                 <span 
                 style={{ 
-                  color: `${coin.market_data.price_change_percentage_24h}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                  color: `${coin.market_data.price_change_percentage_24h_in_currency.usd}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
                 }}>
-                {coin.market_data.price_change_percentage_24h > 0 ? '+' : ''}
-                {coin.market_data.price_change_percentage_24h.toFixed(2)}%
+                {coin.market_data.price_change_percentage_24h_in_currency.usd > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(2)}%
                 </span>
               )}
               {day.label === 'Week' && (
                 <span
                 style={{ 
-                  color: `${coin.market_data.price_change_percentage_7d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                  color: `${coin.market_data.price_change_percentage_7d_in_currency.usd}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
                 }}>
-                {coin.market_data.price_change_percentage_7d > 0 ? '+' : ''}
-                {coin.market_data.price_change_percentage_7d.toFixed(2)}%
-                </span>
-              )}
-              {day.label === '2 Weeks' && (
-                <span 
-                style={{ 
-                  color: `${coin.market_data.price_change_percentage_14d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
-                }}>
-                {coin.market_data.price_change_percentage_14d > 0 ? '+' : ''}
-                {coin.market_data.price_change_percentage_14d.toFixed(2)}%
+                {coin.market_data.price_change_percentage_7d_in_currency.usd > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(2)}%
                 </span>
               )}
               {day.label === 'Month' && (
                 <span 
                 style={{ 
-                  color: `${coin.market_data.price_change_percentage_30d}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                  color: `${coin.market_data.price_change_percentage_30d_in_currency.usd}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
                 }}>
-                {coin.market_data.price_change_percentage_30d > 0 ? '+' : ''}
-                {coin.market_data.price_change_percentage_30d.toFixed(2)}%
+                {coin.market_data.price_change_percentage_30d_in_currency.usd > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(2)}%
                 </span>
               )}
               {day.label === 'Year' && (
                 <span 
                 style={{ 
-                  color: `${coin.market_data.price_change_percentage_1y}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
+                  color: `${coin.market_data.price_change_percentage_1y_in_currency.usd}` > 0 ? 'rgb(51, 255, 51)' : 'rgb(255, 102, 102)' 
                 }}>
-                {coin.market_data.price_change_percentage_1y > 0 ? '+' : ''}
-                {coin.market_data.price_change_percentage_1y.toFixed(2)}%
+                {coin.market_data.price_change_percentage_1y_in_currency.usd > 0 ? '+' : ''}
+                {coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(2)}%
                 </span>
               )}
             </p>

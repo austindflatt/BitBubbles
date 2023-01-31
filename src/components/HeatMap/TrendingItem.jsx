@@ -38,7 +38,7 @@ function TrendingItem() {
 	{trending.slice(0, 4).map((crypto) => (
 	<>
 	<Grid item xs={8} sm={4} md={3}>
-		<Link to={`price/${crypto.id}`} style={{ textDecoration: 'none' }}>
+		<Link to={`coin/${crypto.id}`} style={{ textDecoration: 'none' }}>
 			<Item variant='outlined' onClick={``}>
 				<Avatar
 				alt={crypto?.id}

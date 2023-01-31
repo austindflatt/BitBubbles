@@ -42,7 +42,7 @@ function App() {
       {/* <AlertMessage /> */}
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/price/:id' element={<CryptoPage />} />
+          <Route path='/coin/:id' element={<CryptoPage />} />
           <Route path='/404' element={<NotFoundPage />} />
           <Route path='/*' element={<NotFoundPage />} />
         </Routes>

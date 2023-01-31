@@ -23,7 +23,7 @@ const CryptoPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if(!coin) return <>Loading...</>
+  if(!coin) return <><Container maxWidth="xl" style={{ marginLeft: 'auto', marginRight: 'auto' }}>Loading...</Container></>
 
   return (
     <>

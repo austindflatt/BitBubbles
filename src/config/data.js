@@ -1,15 +1,15 @@
 export const chartInterval = [
 	{
+		label: "Hour",
+		value: 0.50,
+	},
+	{
 	  label: "Day",
 	  value: 1,
 	},
 	{
 		label: "Week",
 		value: 7,
-	},
-  {
-	  label: "2 Weeks",
-	  value: 14,
 	},
 	{
 	  label: "Month",

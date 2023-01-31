@@ -14,7 +14,7 @@ const Footer = () => {
             alt="Bit Bubbles" 
             title="Bit Bubbles Logo" 
           />
-          <span>Digital Heat</span>
+          <span>Crypto Heat Map</span>
         </p>
         <h2>Interactive heat map for the TOP 100 cryptocurrencies</h2>
         <p>Digital Heat is available as a web app at digitalheat.io. Android App and iOS App coming soon!</p>

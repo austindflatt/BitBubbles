@@ -7,9 +7,7 @@ const HomePage = () => {
   return (
     <>
       <HeatMap />
-      <Container maxWidth="xl">
-        <CoinList />
-      </Container>
+      <CoinList />
     </>
   )
 }

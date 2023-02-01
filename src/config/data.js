@@ -19,4 +19,4 @@ export const chartInterval = [
 	  label: "Year",
 	  value: 365,
 	},
-  ];
+];

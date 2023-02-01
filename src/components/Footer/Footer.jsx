@@ -14,10 +14,10 @@ const Footer = () => {
             alt="Bit Bubbles" 
             title="Bit Bubbles Logo" 
           />
-          <span>Crypto Heat Map</span>
+          <span>Heat Viz</span>
         </p>
         <h2>Interactive heat map for the TOP 100 cryptocurrencies</h2>
-        <p>Digital Heat is available as a web app at digitalheat.io. Android App and iOS App coming soon!</p>
+        <p>Heat Viz is available as a web app. Android App and iOS App coming soon!</p>
         <nav>
           <a target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/" title="Play Store" className="icon-button">
             <svg width="24" height="24">

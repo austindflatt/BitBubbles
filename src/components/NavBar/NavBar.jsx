@@ -1,12 +1,15 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+
+  const history = useNavigate();
 
   return (
     <>
     <header className="header">
       <img className="logo" src="/logo64.png" alt="Bit Bubbles" title="Bit Bubbles Logo" />
-      <h1>CRYPTO HEAT MAP</h1>
+      <h1>HEAT VIZ</h1>
       <div className="grow"></div>
       <div className="header-settings">
         <select>

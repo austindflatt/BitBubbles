@@ -1,11 +1,11 @@
-# HODLSELL
+# HeatViz
 
-A web app that allows users to track different crypto currencies and save them to a watchlist
+HeatViz is a real-time heat map of the cryptocurrency markets.
 
 ## Home Page
 ![preview](https://raw.githubusercontent.com/austindflatt/crypto-currency-react/main/home.png)
 
-## 🛠 Tools
+## 🛠 Tools Used
 
 * React
 * Material UI
@@ -14,7 +14,7 @@ A web app that allows users to track different crypto currencies and save them t
 
 ## ✨ Live Demo
 
-[https://hodlsell.com/](https://hodlsell.com/)
+<!-- [https://hodlsell.com/](https://hodlsell.com/) -->
 
 ## 🚀 Installation and Setup Instructions
 

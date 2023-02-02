@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 // import { numberWithCommas } from '../CoinList/CoinList';
-import CoinInfo from '../CoinInfo/CoinInfo'
+import CoinInfo from '../CoinInfo/CoinInfo';
 import { Container } from '@mui/material';
 
 const CryptoPage = () => {

@@ -1594,7 +1594,6 @@ input:focus{
   height: 10vh;
   font-size: 4vh;
   font-weight: 600;
-  padding-top: 3vh;
 }
 
 .neutral-med {
@@ -1807,8 +1806,6 @@ input:focus{
   height: 10vh;
   font-size: 4vh;
   font-weight: 600;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
 }
 
 .negative-darkest-med {
@@ -2204,8 +2201,6 @@ input:focus{
         font-weight: 600;
         opacity: 0.18;
         line-height: 1.15;
-        padding-top: 3vh;
-        padding-bottom: 3vh;
         }
 
 

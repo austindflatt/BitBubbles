@@ -16,7 +16,7 @@ const Footer = () => {
           />
           <span>Heat Viz</span>
         </p>
-        <h2>Interactive heat map for the TOP 100 cryptocurrencies</h2>
+        <h2>Real-time heat map for the TOP 100 cryptocurrencies</h2>
         <p>Heat Viz is available as a web app. Android App and iOS App coming soon!</p>
         <nav>
           <a target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/" title="Play Store" className="icon-button">

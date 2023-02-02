@@ -60,8 +60,8 @@ const CoinList = () => {
     <div className="scroll-container">
       <table className="currency-table">
         <thead>
-          {/* <tr>
-            {['#', 'Name', 'Price', 'Market Cap', '24h Volume', 'Hour', 'Day', 'Week', 'Month', 'Year'].map(head) => { 
+          <tr>
+            {/* {['#', 'Name', 'Price', 'Market Cap', '24h Volume', 'Hour', 'Day', 'Week', 'Month', 'Year'].map(head) => (
             return (
               <th className="sortable" key={head}>
                 <div>
@@ -72,8 +72,8 @@ const CoinList = () => {
                 </div>
               </th>
               )
-            })}
-          </tr> */}
+            )} */}
+          </tr>
         </thead>
         <tbody>
           {coins.map(row => {

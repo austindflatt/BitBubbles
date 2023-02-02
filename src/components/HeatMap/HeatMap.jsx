@@ -52,7 +52,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric'>
-                  {row.market_data.price_change_percentage_24h > 0 ? '+' : ''}
+                  {/* {row.market_data.price_change_percentage_24h > 0 ? '+' : ''} */}
                   {row.market_data.price_change_percentage_24h.toFixed(2)}%
                 </span>
               </div>
@@ -94,10 +94,10 @@ const HeatMap = () => {
               >
                 <span className='symbol-med'>
                   {row.symbol.toUpperCase()}
-                  {index}
+                  {/* {index} */}
                 </span>
                 <span className='metric-med'>
-                  {row.market_data.price_change_percentage_24h > 0 ? '+' : ''}
+                  {/* {row.market_data.price_change_percentage_24h > 0 ? '+' : ''} */}
                   {row.market_data.price_change_percentage_24h.toFixed(2)}%
                 </span>
               </div>

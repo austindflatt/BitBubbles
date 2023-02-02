@@ -36,12 +36,11 @@ const CoinInfo = ({ coin }) => {
     <>
     <br />
     <div className="currency-header">
-      <img src={coin?.image.large} alt={coin.name}  />
-      <span style={{ marginBottom: '20px', font: '33px Montserrat,sans-serif' }}>{coin?.name}</span>
+      <h2 style={{ marginBottom: '20px', font: '33px Montserrat,sans-serif' }}>{coin?.name}</h2>
     </div>
-    <p style={{ marginTop: '20px', marginBottom: '20px' }}>
+    {/* <p style={{ marginTop: '20px', marginBottom: '20px' }}>
       {coin?.description.en.split(". ")[0]}
-    </p>
+    </p> */}
     <div className="bubble-window-details">
       <p>
         <span>Rank</span>

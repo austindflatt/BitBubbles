@@ -4,7 +4,7 @@ const HeatMap = () => {
   const [coins, setCoins] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.coingecko.com/api/v3/coins")
+    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=150&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d%2C1y")
       .then(response => response.json())
       .then(data => setCoins(data))
   }, []);
@@ -19,32 +19,32 @@ const HeatMap = () => {
               href={`coin/${row.id}`}
               key={row.symbol}
               className={
-                  row.market_data.price_change_percentage_24h > 10.00 ? 'positive-bright' :
-                  row.market_data.price_change_percentage_24h > 5.00 ? 'positive-dark' :
-                  row.market_data.price_change_percentage_24h > 2.50 ? 'positive-darker' :
-                  row.market_data.price_change_percentage_24h > 1.50 ? 'positive-darker-second' :
-                  row.market_data.price_change_percentage_24h > 0.01 ? 'positive-darkest' :
-                  row.market_data.price_change_percentage_24h < -10.00 ? 'negative-bright' :
-                  row.market_data.price_change_percentage_24h < -5.00 ? 'negative-dark' :
-                  row.market_data.price_change_percentage_24h < -2.50 ? 'negative-darker' :
-                  row.market_data.price_change_percentage_24h < -1.50 ? 'negative-darker-second' :
-                  row.market_data.price_change_percentage_24h < -0.001 ? 'negative-darkest' :
-                  row.market_data.price_change_percentage_24h < -0.00 ? 'neutral' : 'neutral'
+                  row.price_change_percentage_24h > 10.00 ? 'positive-bright' :
+                  row.price_change_percentage_24h > 5.00 ? 'positive-dark' :
+                  row.price_change_percentage_24h > 2.50 ? 'positive-darker' :
+                  row.price_change_percentage_24h > 1.50 ? 'positive-darker-second' :
+                  row.price_change_percentage_24h > 0.01 ? 'positive-darkest' :
+                  row.price_change_percentage_24h < -10.00 ? 'negative-bright' :
+                  row.price_change_percentage_24h < -5.00 ? 'negative-dark' :
+                  row.price_change_percentage_24h < -2.50 ? 'negative-darker' :
+                  row.price_change_percentage_24h < -1.50 ? 'negative-darker-second' :
+                  row.price_change_percentage_24h < -0.001 ? 'negative-darkest' :
+                  row.price_change_percentage_24h < -0.00 ? 'neutral' : 'neutral'
               }
             >
               <div
               className={
-                row.market_data.price_change_percentage_24h > 10.00 ? 'coin-text' :
-                row.market_data.price_change_percentage_24h > 5.00 ? 'coin-text-positive-dark' :
-                row.market_data.price_change_percentage_24h > 2.50 ? 'coin-text-positive-dark' :
-                row.market_data.price_change_percentage_24h > 1.50 ? 'coin-text-positive-darker-second' :
-                row.market_data.price_change_percentage_24h > 0.01 ? 'coin-text-positive-darker-second' :
-                row.market_data.price_change_percentage_24h < -10.00 ? 'coin-text' :
-                row.market_data.price_change_percentage_24h < -5.00 ? 'coin-text-negative-dark' :
-                row.market_data.price_change_percentage_24h < -2.50 ? 'coin-text-negative-darker' :
-                row.market_data.price_change_percentage_24h < -1.50 ? 'coin-text-negative-darker-second' :
-                row.market_data.price_change_percentage_24h < -0.001 ? 'coin-text-negative-darker' :
-                row.market_data.price_change_percentage_24h < -0.00 ? 'coin-text-neutral' : 'coin-text-neutral'
+                row.price_change_percentage_24h > 10.00 ? 'coin-text' :
+                row.price_change_percentage_24h > 5.00 ? 'coin-text-positive-dark' :
+                row.price_change_percentage_24h > 2.50 ? 'coin-text-positive-dark' :
+                row.price_change_percentage_24h > 1.50 ? 'coin-text-positive-darker-second' :
+                row.price_change_percentage_24h > 0.01 ? 'coin-text-positive-darker-second' :
+                row.price_change_percentage_24h < -10.00 ? 'coin-text' :
+                row.price_change_percentage_24h < -5.00 ? 'coin-text-negative-dark' :
+                row.price_change_percentage_24h < -2.50 ? 'coin-text-negative-darker' :
+                row.price_change_percentage_24h < -1.50 ? 'coin-text-negative-darker-second' :
+                row.price_change_percentage_24h < -0.001 ? 'coin-text-negative-darker' :
+                row.price_change_percentage_24h < -0.00 ? 'coin-text-neutral' : 'coin-text-neutral'
               }
               >
                 <span className='symbol'>
@@ -52,44 +52,44 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric'>
-                  {/* {row.market_data.price_change_percentage_24h > 0 ? '+' : ''} */}
-                  {row.market_data.price_change_percentage_24h.toFixed(2)}%
+                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
+                  {row.price_change_percentage_24h.toFixed(2)}%
                 </span>
               </div>
             </a>
             ) :
-            index <= 49
+            index <= 29
             ? (
               <a
               href={`coin/${row.id}`}
               key={row.symbol}
               className={
-                  row.market_data.price_change_percentage_24h > 10.00 ? 'positive-bright-med' :
-                  row.market_data.price_change_percentage_24h > 5.00 ? 'positive-dark-med' :
-                  row.market_data.price_change_percentage_24h > 2.50 ? 'positive-darker-med' :
-                  row.market_data.price_change_percentage_24h > 1.50 ? 'positive-darker-second-med' :
-                  row.market_data.price_change_percentage_24h > 0.01 ? 'positive-darkest-med' :
-                  row.market_data.price_change_percentage_24h < -10.00 ? 'negative-bright-med' :
-                  row.market_data.price_change_percentage_24h < -5.00 ? 'negative-dark-med' :
-                  row.market_data.price_change_percentage_24h < -2.50 ? 'negative-darker-med' :
-                  row.market_data.price_change_percentage_24h < -1.50 ? 'negative-darker-second-med' :
-                  row.market_data.price_change_percentage_24h < -0.001 ? 'negative-darkest-med' :
-                  row.market_data.price_change_percentage_24h < -0.00 ? 'neutral-med' : 'neutral-med'
+                  row.price_change_percentage_24h > 10.00 ? 'positive-bright-med' :
+                  row.price_change_percentage_24h > 5.00 ? 'positive-dark-med' :
+                  row.price_change_percentage_24h > 2.50 ? 'positive-darker-med' :
+                  row.price_change_percentage_24h > 1.50 ? 'positive-darker-second-med' :
+                  row.price_change_percentage_24h > 0.01 ? 'positive-darkest-med' :
+                  row.price_change_percentage_24h < -10.00 ? 'negative-bright-med' :
+                  row.price_change_percentage_24h < -5.00 ? 'negative-dark-med' :
+                  row.price_change_percentage_24h < -2.50 ? 'negative-darker-med' :
+                  row.price_change_percentage_24h < -1.50 ? 'negative-darker-second-med' :
+                  row.price_change_percentage_24h < -0.001 ? 'negative-darkest-med' :
+                  row.price_change_percentage_24h < -0.00 ? 'neutral-med' : 'neutral-med'
               }
             >
               <div
               className={
-                row.market_data.price_change_percentage_24h > 10.00 ? 'coin-text-med' :
-                row.market_data.price_change_percentage_24h > 5.00 ? 'coin-text-positive-dark-med' :
-                row.market_data.price_change_percentage_24h > 2.50 ? 'coin-text-positive-dark-med' :
-                row.market_data.price_change_percentage_24h > 1.50 ? 'coin-text-positive-darker-second-med' :
-                row.market_data.price_change_percentage_24h > 0.01 ? 'coin-text-positive-darker-second-med' :
-                row.market_data.price_change_percentage_24h < -10.00 ? 'coin-text-med' :
-                row.market_data.price_change_percentage_24h < -5.00 ? 'coin-text-negative-dark-med' :
-                row.market_data.price_change_percentage_24h < -2.50 ? 'coin-text-negative-darker-med' :
-                row.market_data.price_change_percentage_24h < -1.50 ? 'coin-text-negative-darker-second-med' :
-                row.market_data.price_change_percentage_24h < -0.001 ? 'coin-text-negative-darker-med' :
-                row.market_data.price_change_percentage_24h < -0.00 ? 'coin-text-neutral-med' : 'coin-text-neutral-med'
+                row.price_change_percentage_24h > 10.00 ? 'coin-text-med' :
+                row.price_change_percentage_24h > 5.00 ? 'coin-text-positive-dark-med' :
+                row.price_change_percentage_24h > 2.50 ? 'coin-text-positive-dark-med' :
+                row.price_change_percentage_24h > 1.50 ? 'coin-text-positive-darker-second-med' :
+                row.price_change_percentage_24h > 0.01 ? 'coin-text-positive-darker-second-med' :
+                row.price_change_percentage_24h < -10.00 ? 'coin-text-med' :
+                row.price_change_percentage_24h < -5.00 ? 'coin-text-negative-dark-med' :
+                row.price_change_percentage_24h < -2.50 ? 'coin-text-negative-darker-med' :
+                row.price_change_percentage_24h < -1.50 ? 'coin-text-negative-darker-second-med' :
+                row.price_change_percentage_24h < -0.001 ? 'coin-text-negative-darker-med' :
+                row.price_change_percentage_24h < -0.00 ? 'coin-text-neutral-med' : 'coin-text-neutral-med'
               }
               >
                 <span className='symbol-med'>
@@ -97,13 +97,57 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric-med'>
-                  {/* {row.market_data.price_change_percentage_24h > 0 ? '+' : ''} */}
-                  {row.market_data.price_change_percentage_24h.toFixed(2)}%
+                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
+                  {row.price_change_percentage_24h.toFixed(2)}%
                 </span>
               </div>
             </a>
             )
-            : null
+            : 
+            (
+              <a
+              href={`coin/${row.id}`}
+              key={row.symbol}
+              className={
+                  row.price_change_percentage_24h > 10.00 ? 'positive-bright-sm' :
+                  row.price_change_percentage_24h > 5.00 ? 'positive-dark-sm' :
+                  row.price_change_percentage_24h > 2.50 ? 'positive-darker-sm' :
+                  row.price_change_percentage_24h > 1.50 ? 'positive-darker-second-sm' :
+                  row.price_change_percentage_24h > 0.01 ? 'positive-darkest-sm' :
+                  row.price_change_percentage_24h < -10.00 ? 'negative-bright-sm' :
+                  row.price_change_percentage_24h < -5.00 ? 'negative-dark-sm' :
+                  row.price_change_percentage_24h < -2.50 ? 'negative-darker-sm' :
+                  row.price_change_percentage_24h < -1.50 ? 'negative-darker-second-sm' :
+                  row.price_change_percentage_24h < -0.001 ? 'negative-darkest-sm' :
+                  row.price_change_percentage_24h < -0.00 ? 'neutral-sm' : 'neutral-sm'
+              }
+            >
+              <div
+              className={
+                row.price_change_percentage_24h > 10.00 ? 'coin-text-sm' :
+                row.price_change_percentage_24h > 5.00 ? 'coin-text-positive-dark-sm' :
+                row.price_change_percentage_24h > 2.50 ? 'coin-text-positive-dark-sm' :
+                row.price_change_percentage_24h > 1.50 ? 'coin-text-positive-darker-second-sm' :
+                row.price_change_percentage_24h > 0.01 ? 'coin-text-positive-darker-second-sm' :
+                row.price_change_percentage_24h < -10.00 ? 'coin-text-sm' :
+                row.price_change_percentage_24h < -5.00 ? 'coin-text-negative-dark-sm' :
+                row.price_change_percentage_24h < -2.50 ? 'coin-text-negative-darker-sm' :
+                row.price_change_percentage_24h < -1.50 ? 'coin-text-negative-darker-second-sm' :
+                row.price_change_percentage_24h < -0.001 ? 'coin-text-negative-darker-sm' :
+                row.price_change_percentage_24h < -0.00 ? 'coin-text-neutral-sm' : 'coin-text-neutral-sm'
+              }
+              >
+                <span className='symbol-sm'>
+                  {row.symbol.toUpperCase()}
+                  {/* {index} */}
+                </span>
+                <span className='metric-sm'>
+                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
+                  {row.price_change_percentage_24h.toFixed(2)}%
+                </span>
+              </div>
+            </a>
+            )
           ))}
         </div>
       </div>

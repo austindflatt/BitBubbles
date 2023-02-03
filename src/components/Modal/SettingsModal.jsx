@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import {isMobile} from 'react-device-detect';
+import { CoinState } from '../../context/CoinContext';
 
 const style = {
 	position: 'absolute',
@@ -10,7 +12,7 @@ const style = {
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: 400,
-	bgcolor: 'rgb(3 3 3 / 90%)',
+	bgcolor: 'rgb(0 0 0 / 90%)',
 	backdropFilter: 'blur(8px)',
 	borderRadius: '12px',
 	boxShadow: '0 2px 8px rgb(0 0 0 / 20%)',
@@ -18,6 +20,8 @@ const style = {
   };
 
 const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
+  const { currency, setCurrency } = CoinState();
+
   return (
 	<>
 	<Modal
@@ -30,6 +34,7 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Settings
           </Typography>
+
           <select>
           <optgroup label="View">
             <option value="favorites">Price Change</option>
@@ -59,13 +64,13 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
             <option value="top-100">TOP 100</option>
           </optgroup>
         </select>
-        <select>
-          <option value="usd">$ USD</option>
+        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <option value="USD">$ USD</option>
           <option value="eur">€ EUR</option>
           <option value="rub">₽ RUB</option>
           <option value="brl">R$ BRL</option>
           <option value="gbp">£ GBP</option>
-          <option value="inr">₹ INR</option>
+          <option value="INR">₹ INR</option>
           <option value="aud">$ AUD</option>
           <option value="cad">$ CAD</option>
           <option value="pln">Zł PLN</option>

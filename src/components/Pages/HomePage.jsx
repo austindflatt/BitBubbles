@@ -1,12 +1,12 @@
-import React from 'react'
-import CoinList from '../CoinList/CoinList'
-import HeatMap from '../HeatMap/HeatMap'
+import React from 'react';
+import CoinList from '../CoinList/CoinList';
+import HeatMap from '../HeatMap/HeatMap';
 
 const HomePage = () => {
   return (
     <>
       <HeatMap />
-      <CoinList />
+      {/* <CoinList /> */}
     </>
   )
 }

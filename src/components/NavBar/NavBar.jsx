@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { CoinState } from '../../context/CoinContext';
 import SettingsModal from '../Modal/SettingsModal';
 
 const NavBar = () => {
   const [settingsOpened, setSettingsOpened] = useState(false);
+  const { currency, setCurrency } = CoinState();
 
   const history = useNavigate();
 

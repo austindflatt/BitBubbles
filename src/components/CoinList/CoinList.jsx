@@ -33,7 +33,7 @@ const CoinList = () => {
   const [coins, setCoins] = useState([])
 
   const fetchData = () => {
-    fetch("https://api.coingecko.com/api/v3/coins")
+    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=150&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d%2C1y")
       .then(response => {
         return response.json()
       })
@@ -80,7 +80,7 @@ const CoinList = () => {
             return (
               <tr key={row.symbol}>
                 <td className="right">
-                  {row.market_data.market_cap_rank}
+                  {row.market_cap_rank}
                 </td>
                 <td>
                   <div className="name-cell">
@@ -92,7 +92,7 @@ const CoinList = () => {
                     <div className="currency-header">
                       <a href={`coin/${row.id}`} key={row.symbol}>
                         <img 
-                          src={row?.image.small} 
+                          src={row?.image} 
                           alt={row.symbol} 
                           title={`${row.symbol} Logo`} 
                         />
@@ -101,69 +101,68 @@ const CoinList = () => {
                     </div>
                   </div>
                 </td>
-                <td className="right">${abbreviateNumber(row.market_data.current_price.usd)}</td>
-                <td className="right">${abbreviateNumber(row.market_data.market_cap.usd)}</td>
-                <td className="right volume">${abbreviateNumber(row.market_data.total_volume.usd)}</td>
-                <td className="right">${abbreviateNumber(row.market_data.circulating_supply)} {row.symbol.toUpperCase()}</td>
+                <td className="right">${abbreviateNumber(row.current_price)}</td>
+                <td className="right">${abbreviateNumber(row.market_cap)}</td>
+                <td className="right volume">${abbreviateNumber(row.total_volume)}</td>
+                <td className="right">${abbreviateNumber(row.circulating_supply)} {row.symbol.toUpperCase()}</td>
                 <td 
                   className="center" 
                   style={{ 
-                    background:
-                    `${row.market_data.price_change_percentage_1h_in_currency.usd}` > 0
-                    ? 'linear-gradient(rgb(147, 232, 38), rgb(32, 189, 0))' 
-                    : `${row.market_data.price_change_percentage_1h_in_currency.usd}` === 0 ? 'rgb(34 34 34)' 
-                    : 'linear-gradient(rgb(255, 70, 71), rgb(219, 0, 0))', fontWeight: 600 }}
+                    color:
+                    `${row.price_change_percentage_1h_in_currency}` > 0
+                    ? 'rgb(51, 255, 51)' 
+                    : `${row.price_change_percentage_1h_in_currencyd}` === 0 ? '#FFF' 
+                    : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.market_data.price_change_percentage_1h_in_currency.usd > 0 ? '+' : ''}
-                  {row.market_data.price_change_percentage_1h_in_currency.usd.toFixed(2)}%
+                  {row.price_change_percentage_1h_in_currency}%
                 </td>
                 <td 
                   className="center" 
                   style={{ 
-                    background:
-                    `${row.market_data.price_change_percentage_24h_in_currency.usd}` > 0 
-                    ? 'linear-gradient(rgb(147, 232, 38), rgb(32, 189, 0))' 
-                    : `${row.market_data.price_change_percentage_24h_in_currency.usd}` === 0 ? 'rgb(34 34 34)' 
-                    : 'linear-gradient(rgb(255, 70, 71), rgb(219, 0, 0))', fontWeight: 600 }}
+                    color:
+                    `${row.price_change_percentage_24h_in_currency}` > 0
+                    ? 'rgb(51, 255, 51)' 
+                    : `${row.price_change_percentage_24h_in_currencyd}` === 0 ? '#FFF' 
+                    : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.market_data.price_change_percentage_24h_in_currency.usd > 0 ? '+' : ''}
-                  {row.market_data.price_change_percentage_24h_in_currency.usd.toFixed(2)}%
+                  {row.price_change_percentage_24h_in_currency > 0 ? '+' : ''}
+                  {row.price_change_percentage_24h_in_currency}%
                 </td>
                 <td 
                 className="center" 
                 style={{ 
-                  background:
-                  `${row.market_data.price_change_percentage_7d_in_currency.usd}` > 0
-                  ? 'linear-gradient(rgb(147, 232, 38), rgb(32, 189, 0))' 
-                  : `${row.market_data.price_change_percentage_7d_in_currency.usd}` === 0 ? 'rgb(34 34 34)' 
-                  : 'linear-gradient(rgb(255, 70, 71), rgb(219, 0, 0))', fontWeight: 600 }}
+                  color:
+                    `${row.price_change_percentage_7d_in_currency}` > 0
+                    ? 'rgb(51, 255, 51)' 
+                    : `${row.price_change_percentage_7d_in_currencyd}` === 0 ? '#FFF' 
+                    : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.market_data.price_change_percentage_7d_in_currency.usd > 0 ? '+' : ''}
-                  {row.market_data.price_change_percentage_7d_in_currency.usd.toFixed(2)}%
+                  {row.price_change_percentage_7d_in_currency > 0 ? '+' : ''}
+                  {row.price_change_percentage_7d_in_currency}%
                 </td>
                 <td 
                 className="center" 
                 style={{ 
-                  background:
-                  `${row.market_data.price_change_percentage_30d_in_currency.usd}` > 0
-                  ? 'linear-gradient(rgb(147, 232, 38), rgb(32, 189, 0))' 
-                  : `${row.market_data.price_change_percentage_30d_in_currency.usd}` === 0 ? 'rgb(34 34 34)' 
-                  : 'linear-gradient(rgb(255, 70, 71), rgb(219, 0, 0))', fontWeight: 600 }}
+                  color:
+                    `${row.price_change_percentage_30d_in_currency}` > 0
+                    ? 'rgb(51, 255, 51)' 
+                    : `${row.price_change_percentage_30d_in_currencyd}` === 0 ? '#FFF' 
+                    : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.market_data.price_change_percentage_30d_in_currency.usd > 0 ? '+' : ''}
-                  {row.market_data.price_change_percentage_30d_in_currency.usd.toFixed(2)}%
+                  {row.price_change_percentage_30d_in_currency > 0 ? '+' : ''}
+                  {row.price_change_percentage_30d_in_currency}%
                 </td>
                 <td 
                 className="center" 
                 style={{ 
-                  background:
-                  `${row.market_data.price_change_percentage_1y_in_currency.usd}` > 0
-                  ? 'linear-gradient(rgb(147, 232, 38), rgb(32, 189, 0))' 
-                  : `${row.market_data.price_change_percentage_1y_in_currency.usd}` === 0 ? 'rgb(34 34 34)' 
-                  : 'linear-gradient(rgb(255, 70, 71), rgb(219, 0, 0))', fontWeight: 600 }}
+                  color:
+                    `${row.price_change_percentage_1y_in_currency}` > 0
+                    ? 'rgb(51, 255, 51)' 
+                    : `${row.price_change_percentage_1y_in_currencyd}` === 0 ? '#FFF' 
+                    : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.market_data.price_change_percentage_1y_in_currency.usd > 0 ? '+' : ''}
-                  {row.market_data.price_change_percentage_1y_in_currency.usd}%
+                  {row.price_change_percentage_1y_in_currency > 0 ? '+' : ''}
+                  {row.price_change_percentage_1y_in_currency}%
                 </td>
               </tr>
             )

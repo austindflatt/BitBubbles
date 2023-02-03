@@ -41,6 +41,7 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
             <option value="favorites">Price</option>
           </optgroup>
         </select>
+        <br />
         <select>
           <optgroup label="Sort By">
             <option value="favorites">Market Cap</option>
@@ -48,6 +49,7 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
             <option value="favorites">Volume 24H</option>
           </optgroup>
         </select>
+        <br />
         <select>
           <optgroup label="Period">
             <option value="favorites">Hour</option>
@@ -57,6 +59,7 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
             <option value="favorites">Year</option>
           </optgroup>
         </select>
+        <br />
         <select>
           <option value="favorites">★ Watchlist</option>
           <optgroup label="Pages">
@@ -64,6 +67,7 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
             <option value="top-100">TOP 100</option>
           </optgroup>
         </select>
+        <br />
         <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
           <option value="USD">$ USD</option>
           <option value="eur">€ EUR</option>

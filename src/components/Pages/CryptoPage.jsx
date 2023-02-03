@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 // import { numberWithCommas } from '../CoinList/CoinList';
 import CoinInfo from '../CoinInfo/CoinInfo';
 import { Container } from '@mui/material';
+import { CircularProgress, Box } from '@mui/material';
 
 const CryptoPage = () => {
   const { id } = useParams();
@@ -23,7 +24,15 @@ const CryptoPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if(!coin) return <><Container maxWidth="xl" style={{ marginLeft: 'auto', marginRight: 'auto' }}>Loading...</Container></>
+  if(!coin) return (
+    <>
+    <Container maxWidth="xl" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <Box sx={{ display: 'flex' }} style={{width: '100px', margin: 'auto', display: 'block'}}>
+        <CircularProgress size={150} style={{ color: 'rgba(149, 76, 233, 0.5)' }} />
+      </Box>
+    </Container>
+    </>
+  )
 
   return (
     <>

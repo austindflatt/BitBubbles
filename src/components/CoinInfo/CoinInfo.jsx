@@ -103,7 +103,7 @@ const CoinInfo = ({ coin }) => {
                   hoverBackgroundColor: "rgb(51, 255, 51)",
                   hoverBorderColor: "rgb(51, 255, 51)",
                   borderWidth: 2,
-                  radius: 3,
+                  radius: 0,
                   hoverRadius: 5,
                   hoverBorderWidth: 2,
                 },

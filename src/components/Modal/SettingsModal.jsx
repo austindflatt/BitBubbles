@@ -34,7 +34,6 @@ const SettingsModal = ({ settingsOpened, setSettingsOpened }) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Settings
           </Typography>
-
           <select>
           <optgroup label="View">
             <option value="favorites">Price Change</option>

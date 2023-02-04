@@ -5,6 +5,8 @@ import 'chartkick/chart.js';
 import { Line } from 'react-chartjs-2';
 import { chartInterval } from '../../config/data';
 import { abbreviateNumber } from '../CoinList/CoinList';
+import { CoinState } from "../../context/CoinContext";
+import { HistoricalChart } from '../../config/api';
 
 
 const colors = {
@@ -19,18 +21,33 @@ const colors = {
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
-  
-  const fetchHistoricalData = async () => {
-    const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=USD&days=${days}`);
-    // const { details } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}`);
+  const { currency } = CoinState();
+  const [flag,setflag] = useState(false);
+
+  const fetchHistoricData = async () => {
+    const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
+    setflag(true);
     setHistoricalData(data.prices);
-    console.log(data.prices)
-  }
-  
+  };
+
+  console.log(coin);
+
   useEffect(() => {
-    fetchHistoricalData();
+    fetchHistoricData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [days])
+  }, [days]);
+  
+  // const fetchHistoricalData = async () => {
+  //   const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=USD&days=${days}`);
+  //   // const { details } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}`);
+  //   setHistoricalData(data.prices);
+  //   console.log(data.prices)
+  // }
+  
+  // useEffect(() => {
+  //   fetchHistoricalData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [days])
 
   return (
     <>
@@ -38,9 +55,9 @@ const CoinInfo = ({ coin }) => {
     <div className="currency-header">
       <h2 style={{ marginBottom: '20px', font: '33px Montserrat,sans-serif' }}>{coin?.name}</h2>
     </div>
-    {/* <p style={{ marginTop: '20px', marginBottom: '20px' }}>
+    <p style={{ marginTop: '20px', marginBottom: '20px' }}>
       {coin?.description.en.split(". ")[0]}
-    </p> */}
+    </p>
     <div className="bubble-window-details">
       <p>
         <span>Rank</span>

@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { CoinState } from '../../context/CoinContext';
+import  { CoinData } from "../../config/api";
+import axios from 'axios';
 
 const HeatMap = () => {
   const [coins, setCoins] = useState([]);
+  const { currency, symbol, pages, changePercentage, sort, view } = CoinState();
+  const [loading, setLoading] = useState(false);
+
+  const fetchCoins = async () => {
+    setLoading(true);
+    const { data } = await axios.get(CoinData(currency, pages, changePercentage, sort, view));
+    console.log(data);
+
+    setCoins(data);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d%2C1y")
-      .then(response => response.json())
-      .then(data => setCoins(data))
-  }, []);
-
+    fetchCoins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currency, pages, changePercentage, sort, view]);
+  
   return (
       <div className="heatmap">
         <div className="heatmap-container">
@@ -52,13 +65,12 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric'>
-                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
-                  {row.price_change_percentage_24h.toFixed(2)}%
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
                 </span>
               </div>
             </a>
             ) :
-            index <= 29
+            index <= 49
             ? (
               <a
               href={`coin/${row.id}`}
@@ -97,8 +109,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric-med'>
-                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
-                  {row.price_change_percentage_24h.toFixed(2)}%
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
                 </span>
               </div>
             </a>
@@ -142,8 +153,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric-sm'>
-                  {/* {row.price_change_percentage_24h > 0 ? '+' : ''} */}
-                  {row.price_change_percentage_24h.toFixed(2)}%
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
                 </span>
               </div>
             </a>

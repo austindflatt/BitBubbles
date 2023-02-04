@@ -1,5 +1,9 @@
+import { LinearProgress } from '@mui/material';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { CoinState } from '../../context/CoinContext';
+import  { CoinData } from "../../config/api";
 
 // `${row.market_data.price_change_percentage_24h}` > 10.00 ? 'positive-bright' :
 // `${row.market_data.price_change_percentage_24h}` > 5.00 ? 'positive-dark' :
@@ -30,23 +34,37 @@ export function abbreviateNumber(value) {
 
 const CoinList = () => {
 //   const [search, setSearch] = useState('')
-  const [coins, setCoins] = useState([])
+  const [coins, setCoins] = useState([]);
+  const { currency, symbol, pages } = CoinState();
+  const [loading, setLoading] = useState(false);
 
-  const fetchData = () => {
-    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=150&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d%2C1y")
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setCoins(data)
-      })
-  }
+  const fetchCoins = async () => {
+    setLoading(true);
+    const { data } = await axios.get(CoinData(currency, pages));
+    console.log(data);
+
+    setCoins(data);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchCoins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currency, pages]);
 
-  console.log(coins)
+  // const fetchData = () => {
+  //   fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=150&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d%2C30d%2C1y")
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(data => {
+  //       setCoins(data)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
   
   return (
     <>
@@ -58,6 +76,9 @@ const CoinList = () => {
     </div>
     
     <div className="scroll-container">
+    {/* {loading ? (
+            <LinearProgress style={{ backgroundColor: "gold" }} />
+          ) : ( */}
       <table className="currency-table">
         <thead>
           <tr>
@@ -101,10 +122,10 @@ const CoinList = () => {
                     </div>
                   </div>
                 </td>
-                <td className="right">${abbreviateNumber(row.current_price)}</td>
-                <td className="right">${abbreviateNumber(row.market_cap)}</td>
-                <td className="right volume">${abbreviateNumber(row.total_volume)}</td>
-                <td className="right">${abbreviateNumber(row.circulating_supply)} {row.symbol.toUpperCase()}</td>
+                <td className="right">{symbol}{" "}{abbreviateNumber(row.current_price)}</td>
+                <td className="right">{symbol}{" "}{abbreviateNumber(row.market_cap)}</td>
+                <td className="right volume">{symbol}{" "}{abbreviateNumber(row.total_volume)}</td>
+                <td className="right">{abbreviateNumber(row.circulating_supply)} {row.symbol.toUpperCase()}</td>
                 <td 
                   className="center" 
                   style={{ 
@@ -114,7 +135,10 @@ const CoinList = () => {
                     : `${row.price_change_percentage_1h_in_currencyd}` === 0 ? '#FFF' 
                     : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.price_change_percentage_1h_in_currency}%
+                  {row.price_change_percentage_1h_in_currency?
+                  row.price_change_percentage_1h_in_currency.toFixed(2)
+                  : 0
+                  }%
                 </td>
                 <td 
                   className="center" 
@@ -125,8 +149,10 @@ const CoinList = () => {
                     : `${row.price_change_percentage_24h_in_currencyd}` === 0 ? '#FFF' 
                     : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.price_change_percentage_24h_in_currency > 0 ? '+' : ''}
-                  {row.price_change_percentage_24h_in_currency}%
+                  {row.price_change_percentage_24h_in_currency?
+                  row?.price_change_percentage_24h_in_currency.toFixed(2)
+                  :0
+                }%
                 </td>
                 <td 
                 className="center" 
@@ -137,8 +163,10 @@ const CoinList = () => {
                     : `${row.price_change_percentage_7d_in_currencyd}` === 0 ? '#FFF' 
                     : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.price_change_percentage_7d_in_currency > 0 ? '+' : ''}
-                  {row.price_change_percentage_7d_in_currency}%
+                   {row.price_change_percentage_7d_in_currency?
+                  row.price_change_percentage_7d_in_currency.toFixed(2)
+                  : 0
+                  }%
                 </td>
                 <td 
                 className="center" 
@@ -149,8 +177,10 @@ const CoinList = () => {
                     : `${row.price_change_percentage_30d_in_currencyd}` === 0 ? '#FFF' 
                     : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.price_change_percentage_30d_in_currency > 0 ? '+' : ''}
-                  {row.price_change_percentage_30d_in_currency}%
+                  {row.price_change_percentage_30d_in_currency?
+                  row.price_change_percentage_30d_in_currency.toFixed(2)
+                  : 0
+                  }%
                 </td>
                 <td 
                 className="center" 
@@ -161,14 +191,17 @@ const CoinList = () => {
                     : `${row.price_change_percentage_1y_in_currencyd}` === 0 ? '#FFF' 
                     : 'rgb(255, 102, 102)', fontWeight: 600 }}
                 >
-                  {row.price_change_percentage_1y_in_currency > 0 ? '+' : ''}
-                  {row.price_change_percentage_1y_in_currency}%
+                   {row.price_change_percentage_1y_in_currency?
+                  row.price_change_percentage_1y_in_currency.toFixed(2)
+                  : 0
+                  }%
                 </td>
               </tr>
             )
           })}
         </tbody>
       </table>
+      {/* )} */}
     </div>
 	</>
   )

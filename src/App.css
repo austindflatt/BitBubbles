@@ -314,7 +314,9 @@ footer{
   padding: 0.25em 1em;
   /* margin-top: 30px; */
   background-color: #000;
-  justify-content:center;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
 }
 footer .footer-header{
   display:flex;
@@ -427,7 +429,8 @@ input:focus{
 }
 
 .currency-table{
-  font-family: Montserrat,sans-serif;
+  font: 20px Montserrat,sans-serif;
+  font-weight: 600;
   margin:0 auto;
   white-space:nowrap
 }
@@ -3021,8 +3024,8 @@ input:focus{
         font-weight: 600;
         opacity: 0.16;
         line-height: 1.15;
-        padding-top: 3vh;
-        padding-bottom: 3vh;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
         }
 
   @media screen and (min-width: 992px){

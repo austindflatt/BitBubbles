@@ -6,9 +6,14 @@ import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detec
 
 const NavBar = () => {
   const [settingsOpened, setSettingsOpened] = useState(false);
-  const { currency, setCurrency } = CoinState();
+  const [viewChange, setViewChange] = useState(false);
+  const { currency, setCurrency, pages, setPages, sort, setSort, changePercentage, setChangePercentage, view, setView } = CoinState();
 
   const history = useNavigate();
+
+  const handleClick = () => {
+    setViewChange(!viewChange);
+  };
 
   // showLogin function will open the modal for logging a user in.
   const showSettings = () => {
@@ -23,54 +28,53 @@ const NavBar = () => {
     />
 
     <header className="header">
-      <img className="logo" src="/logo64.png" alt="Bit Bubbles" title="Bit Bubbles Logo" />
+      {/* <img className="logo" src="/logo64.png" alt="Heat Viz" title="Heat Viz Logo" /> */}
       <h1>HEAT VIZ</h1>
       <div className="grow"></div>
       <BrowserView>
       <div className="header-settings">
-        <select>
+        <select value={view} onChange={(e) => setView(e.target.value)}>
           <optgroup label="View">
-            <option value="favorites">Price Change</option>
-            <option value="favorites">Price</option>
+            <option value={"price-change"}>Price Change</option>
+            <option value={"price"}>Price</option>
           </optgroup>
         </select>
-        <select>
+        <select value={sort} onChange={(e) => setSort(e.target.value)}>
           <optgroup label="Sort By">
-            <option value="favorites">Market Cap</option>
-            <option value="favorites">Price Change</option>
-            <option value="favorites">Volume 24H</option>
+            <option value={"market_cap_desc"}>Market Cap</option>
+            <option value={"volume_desc"}>Volume 24H</option>
           </optgroup>
         </select>
-        <select>
+        <select value={changePercentage} onChange={(e) => setChangePercentage(e.target.value)}>
           <optgroup label="Period">
-            <option value="favorites">Hour</option>
-            <option value="favorites">Day</option>
-            <option value="favorites">Week</option>
-            <option value="favorites">Month</option>
-            <option value="favorites">Year</option>
+            <option value={"1h"}>Hour</option>
+            <option value={"24h"}>Day</option>
+            <option value={"7d"}>Week</option>
+            <option value={"30d"}>Month</option>
+            <option value={"1y"}>Year</option>
           </optgroup>
         </select>
-        <select>
-          <option value="favorites">★ Watchlist</option>
+        <select value={pages} onChange={(e) => setPages(e.target.value)}>
+          {/* <option value="favorites">★ Watchlist</option> */}
           <optgroup label="Pages">
-            <option value="top-100">TOP 150</option>
-            <option value="top-100">TOP 200</option>
-            <option value="top-100">TOP 270</option>
+            <option value={150}>TOP 150</option>
+            <option value={200}>TOP 200</option>
+            <option value={250}>TOP 250</option>
           </optgroup>
         </select>
-        <select>
-          <option value="usd">$ USD</option>
-          <option value="eur">€ EUR</option>
-          <option value="rub">₽ RUB</option>
-          <option value="brl">R$ BRL</option>
-          <option value="gbp">£ GBP</option>
-          <option value="inr">₹ INR</option>
-          <option value="aud">$ AUD</option>
-          <option value="cad">$ CAD</option>
-          <option value="pln">Zł PLN</option>
-          <option value="try">₺ TRY</option>
-          <option value="btc">₿ BTC</option>
-          <option value="eth">Ξ ETH</option>
+        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+          <option value={"USD"}>$ USD</option>
+          <option value={"EUR"}>€ EUR</option>
+          <option value={"RUB"}>₽ RUB</option>
+          <option value={"BRL"}>R$ BRL</option>
+          <option value={"GBP"}>£ GBP</option>
+          <option value={"INR"}>₹ INR</option>
+          <option value={"AUD"}>$ AUD</option>
+          <option value={"CAD"}>$ CAD</option>
+          <option value={"PLN"}>Zł PLN</option>
+          <option value={"TRY"}>₺ TRY</option>
+          <option value={"BTC"}>₿ BTC</option>
+          <option value={"ETH"}>Ξ ETH</option>
         </select>
         <select>
           <option value="en">🇺🇸 English</option>
@@ -90,16 +94,27 @@ const NavBar = () => {
         </select>
       </div>
       </BrowserView>
-      <button className="icon-button button-settings" title="Settings">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <button className="icon-button button-settings" title="Settings" value={changePercentage} onClick={handleClick}>
+      {viewChange ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path d="M7 24h-6v-6h6v6zm8-9h-6v9h6v-9zm8-4h-6v13h6v-13zm0-11l-6 1.221 1.716 1.708-6.85 6.733-3.001-3.002-7.841 7.797 1.41 1.418 6.427-6.39 2.991 2.993 8.28-8.137 1.667 1.66 1.201-6.001z"/>
-      </svg>
+      </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+      </svg> }
       </button>
-      <button className="icon-button button-settings" title="Settings">
+      
+      {/* {viewChange ?
+      <button className="icon-button button-settings" title="Settings" onClick={handleClick}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
       </svg>
       </button>
+       :
+       <button className="icon-button button-settings" title="Settings">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M7 24h-6v-6h6v6zm8-9h-6v9h6v-9zm8-4h-6v13h6v-13zm0-11l-6 1.221 1.716 1.708-6.85 6.733-3.001-3.002-7.841 7.797 1.41 1.418 6.427-6.39 2.991 2.993 8.28-8.137 1.667 1.66 1.201-6.001z"/>
+      </svg>
+      </button>
+       } */}
       <MobileView>
       <button onClick={showSettings} className="icon-button button-settings" title="Settings">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

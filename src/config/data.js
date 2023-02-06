@@ -1,8 +1,8 @@
 export const chartInterval = [
-	{
-		label: "Hour",
-		value: 0.50,
-	},
+	// {
+	// 	label: "Hour",
+	// 	value: 0.50,
+	// },
 	{
 	  label: "Day",
 	  value: 1,

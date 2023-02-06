@@ -28,7 +28,7 @@ const NavBar = () => {
     />
 
     <header className="header">
-      {/* <img className="logo" src="/logo64.png" alt="Heat Viz" title="Heat Viz Logo" /> */}
+      <img className="logo" src="/logo64.png" alt="Heat Viz" title="Heat Viz Logo" />
       <h1>HEAT VIZ</h1>
       <div className="grow"></div>
       <BrowserView>

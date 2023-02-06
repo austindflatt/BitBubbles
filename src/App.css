@@ -8,7 +8,10 @@
 }
 
 body {
-  background-color: #111;
+  padding: 0;
+  margin: 0;
+  background: #000;
+  /* background-color: #111; */
   font-weight: 20px;
   font-family: Montserrat,sans-serif;
   font-weight: 400;
@@ -18,12 +21,6 @@ body {
 a {
   text-decoration: none;
   font-weight: 600;
-}
-
-.bubble-chart-header {
-  display: flex;
-  padding: 0 0.5em;
-  align-items: center;
 }
 
 .configuration-tabs {
@@ -184,14 +181,7 @@ svg {
   background-color:#444;
   height:max(20px,env(safe-area-inset-top,0))
 }
-body{
-  padding:0;
-  margin:0;
-  font:20px Verdana,Arial,sans-serif;
-  color:#fff;
-  background-color:#222;
-  -webkit-tap-highlight-color:transparent
-}
+
 button{
   outline:none;
   cursor:pointer;
@@ -296,7 +286,7 @@ a{
 }
 p{
   margin:1em 0;
-  color:#ccc
+  color:#FFF
 }
 p strong{
   color:#fff;
@@ -561,6 +551,7 @@ input:focus{
   padding:.25em;
   text-align:center;
   font-size: 20px;
+  width: 100%;
 }
 .bubble-window-performance p{
   border-radius:12px;
@@ -763,58 +754,7 @@ input:focus{
   border:none;
   border-bottom:solid #ccc 1px!important
 }
-.support-link-binance{
-  background-color:#fdd430;
-  color:#000
-}
-.support-link-binance:hover{
-  background-color:#d4af19
-}
-.support-crypto{
-  text-align:center
-}
-.support-crypto ul{
-  box-shadow:0 2px 8px rgba(0,0,0,.2);
-  border-radius:12px;
-  padding:0;
-  margin:0;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:2px;
-  overflow:hidden
-}
-.support-crypto li{
-  outline:none;
-  cursor:pointer;
-  transition:background-color .4s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  user-select:none;
-  padding:.25em .5em;
-  background-color:#444
-}
-.support-crypto li:hover{
-  background-color:rgba(255,255,255,.25)
-}
-.support-crypto li.selected{
-  background-color:rgba(149, 76, 233)
-}
-.support-crypto-address{
-  margin:.6em 0;
-  display:flex
-}
-.support-crypto input{
-  flex-grow:1;
-  font-size:.8em;
-  margin-right:.5em
-}
-.follow-me{
-  background-color:#1da1f2
-}
-.follow-me:hover{
-  background-color:#1d8bca
-}
+
 .solid-button{
   box-shadow:0 2px 8px rgba(0,0,0,.2);
   border-radius:12px;
@@ -832,9 +772,7 @@ input:focus{
 .solid-button.active{
   background-color:rgba(149, 76, 233)
 }
-.link-binance{
-  color:#fdd430
-}
+
 .center-container{
   display:flex;
   justify-content:center;
@@ -929,28 +867,12 @@ input:focus{
 .settings-window li .icon-button{
   margin-right:.25em
 }
-.link-kucoin{
-  color:#24ae8f
-}
-.support-link-kucoin{
-  background-color:#24ae8f
-}
-.support-link-kucoin:hover{
-  background-color:#108d72
-}
-.link-gateio{
-  color:#2354e6
-}
+
 .icon-button-dummy{
   width:44px;
   display:inline-block
 }
-.support-link-gateio{
-  background-color:#2354e6
-}
-.support-link-gateio:hover{
-  background-color:#1b41b2
-}
+
 .native-ad-banner{
   transition:background-color .4s;
   display:flex;
@@ -1067,6 +989,8 @@ input:focus{
       height:200px
   }
 }
+
+/*/ COIN TABLE /*/
 
 
 /*/ HEATMAP /*/
@@ -1946,8 +1870,8 @@ input:focus{
   height: 10vh;
   font-size: 4vh;
   font-weight: 600;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
+  padding-top: 0vh;
+  padding-bottom: 0vh;
 }
 
 .negative-dark-med {
@@ -2247,7 +2171,7 @@ input:focus{
       flex-direction: column;
         top: 0px;
         left: 0%;
-        width: 10%;
+        width: 20%;
         height: 10%;
         font-size: 2.5vh;
         font-weight: 600;
@@ -3398,3 +3322,54 @@ input:focus{
       font-weight: 400;
     }
     }
+
+/* COIN PAGE */
+
+.coin-container {
+  display: flex;
+  padding: 20px;
+}
+
+.coin-sidebar {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  /* background-color: #000; */
+  background-color: rgba(255,255,255,.08);
+  color: rgb(255, 255, 255);
+}
+
+.coin-heading {
+  margin-bottom: 20px;
+  font-family: Montserrat;
+}
+
+.coin-data {
+  align-self: start;
+  padding: 25px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.coin-description {
+  width: 100%;
+  font-family: Montserrat;
+  padding: 25;
+  padding-bottom: 15;
+  padding-top: 0;
+  text-align: justify;
+}
+
+.graph-container {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  padding: 40px;
+}

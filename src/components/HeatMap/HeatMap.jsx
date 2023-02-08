@@ -65,7 +65,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric'>
-                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}%`}
                 </span>
               </div>
             </a>
@@ -109,7 +109,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric-med'>
-                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}%`}
                 </span>
               </div>
             </a>
@@ -153,7 +153,7 @@ const HeatMap = () => {
                   {/* {index} */}
                 </span>
                 <span className='metric-sm'>
-                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}`}
+                  {view === 'price' ? `${symbol}${row.current_price}` : `${row.price_change_percentage_24h.toFixed(2)}%`}
                 </span>
               </div>
             </a>

@@ -1,13 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { AlertProvider } from './components/context/alert/AlertContext'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import NavBar from './components/NavBar/NavBar'
-import CryptoPage from './components/Pages/CryptoPage'
-import HomePage from './components/Pages/HomePage'
-import NotFoundPage from './components/Pages/NotFoundPage'
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box'
+import { AlertProvider } from './components/context/alert/AlertContext';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import NavBar from './components/NavBar/NavBar';
+import CryptoPage from './components/Pages/CryptoPage';
+import HomePage from './components/Pages/HomePage';
+import NotFoundPage from './components/Pages/NotFoundPage';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
 import Footer from './components/Footer/Footer';
 
 const darkTheme = createTheme({

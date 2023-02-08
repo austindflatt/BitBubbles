@@ -35,7 +35,6 @@ function App() {
       <NavBar />
       <CssBaseline />
       <Box>
-      {/* <AlertMessage /> */}
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/coin/:id' element={<CryptoPage />} />

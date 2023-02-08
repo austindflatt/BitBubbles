@@ -3,7 +3,7 @@
 HeatViz is a real-time heat map of the cryptocurrency markets.
 
 ## Home Page
-<!-- ![preview](https://raw.githubusercontent.com/austindflatt/crypto-currency-react/main/home.png) -->
+![preview](https://raw.githubusercontent.com/austindflatt/crypto-currency-react/main/heatmap.png)
 
 ## 🛠 Tools Used
 

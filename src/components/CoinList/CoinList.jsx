@@ -1,7 +1,7 @@
-import { LinearProgress } from '@mui/material';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import { LinearProgress } from '@mui/material';
 import { CoinState } from '../../context/CoinContext';
 import  { CoinData } from "../../config/api";
 
